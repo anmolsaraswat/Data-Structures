@@ -6,6 +6,18 @@ struct Node{
     struct Node *next;
 };
 
+void printLinkedList(struct Node *head)
+{
+   struct Node *traverse;
+    traverse = head;
+    while (traverse != NULL)
+    {
+        printf("%d -->", traverse->data);
+        traverse = traverse->next;
+    }
+    return 0;
+}
+
 int main(){
 
     struct Node *head = NULL;
@@ -36,12 +48,5 @@ int main(){
             ptr = str;
         }
     }
-    struct Node *traverse;
-    traverse = head;
-    while (traverse != NULL)
-    {
-        printf("%d -->", traverse->data);
-        traverse = traverse->next;
-    }
-    return 0;
+    printLinkedList(head);
 }
