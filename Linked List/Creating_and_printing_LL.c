@@ -15,7 +15,7 @@ void printLinkedList(struct Node *head)
         printf("%d -->", traverse->data);
         traverse = traverse->next;
     }
-    return 0;
+
 }
 
 int main(){
@@ -49,4 +49,5 @@ int main(){
         }
     }
     printLinkedList(head);
+        return 0;
 }
