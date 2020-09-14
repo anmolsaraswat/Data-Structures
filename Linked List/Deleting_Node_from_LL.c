@@ -45,6 +45,7 @@ void deleteNode(struct Node **head, int val)
             previous = temp;
             ahead = temp->next->next;
             previous->next = ahead;
+            return;
         }
         if((temp->next->data == val) && (temp->next->next ==NULL))
         {
