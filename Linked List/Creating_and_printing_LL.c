@@ -12,7 +12,14 @@ void printLinkedList(struct Node *head)
     traverse = head;
     while (traverse != NULL)
     {
-        printf("%d -->", traverse->data);
+        if(traverse->next == NULL)
+        {
+            printf("%d", traverse->data);
+        }
+        else
+        {
+            printf("%d -->", traverse->data);
+        }
         traverse = traverse->next;
     }
 
