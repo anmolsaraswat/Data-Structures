@@ -1,16 +1,16 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 
 struct Node{
     int data;
-    struct Node *next;
+    struct Node* next;
 };
 
 void printLinkedList(struct Node *head)
 {
-   struct Node *traverse;
+    struct Node *traverse;
     traverse = head;
-    while (traverse != NULL)
+    while(traverse != NULL)
     {
         if(traverse->next == NULL)
         {
@@ -22,19 +22,19 @@ void printLinkedList(struct Node *head)
         }
         traverse = traverse->next;
     }
-
 }
 
-int main(){
-
+int main()
+{
     struct Node *head = NULL;
     struct Node *str = NULL;
     struct Node *ptr = NULL;
     int no_of_ele;
 
-    printf("No of elements in a linked list: ");
+    printf("No. of elements in Linked List:");
     scanf("%d", &no_of_ele);
-    head  = (struct Node*)malloc(sizeof(struct Node));
+
+    head = (struct Node*)malloc(sizeof(struct Node));
     scanf("%d", &(head->data));
     head->next = NULL;
     for(int i=0; i<(no_of_ele-1); i++)
@@ -55,6 +55,7 @@ int main(){
             ptr = str;
         }
     }
+
     printLinkedList(head);
-        return 0;
+    return 0;
 }
