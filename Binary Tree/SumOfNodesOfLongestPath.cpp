@@ -12,18 +12,18 @@ struct Node {
     }
 };
 
-void sumofLongestPath(Node *root, int sum, int len, int& maxLen, int& maxSum)
+void sumofLongestPath(Node *root, int sum, int len, int *maxLen, int *maxSum)
 {
     if(!root)
     {
-        if(maxLen < len)
+        if(*maxLen < len)
         {
-            maxLen = len;
-            maxSum = sum;
+            *maxLen = len;
+            *maxSum = sum;
         }
-        else if(maxLen == len && maxSum < sum)
+        else if(*maxLen == len && *maxSum < sum)
         {
-            maxSum = sum;
+            *maxSum = sum;
         }
         return;
     }
@@ -38,7 +38,7 @@ int printLongestPathSum(struct Node *root)
 
     int maxSum = INT_MIN, maxLen = 0;
 
-    sumofLongestPath(root, 0, 0 , maxLen, maxSum);
+    sumofLongestPath(root, 0, 0 , &maxLen, &maxSum);
 
     return maxSum;
 }
