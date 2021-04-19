@@ -3,59 +3,55 @@ using namespace std;
 
 class Graph {
     int V;
-    map<int, vector<int>> adj;
-    map<int, bool> visited;
-    stack<int> ts;
+    vector<int> *adj;
 public:
     Graph(int v);
     void addEdge(int src, int dst);
     void topSort();
-    void topSortUtil(int val);
-    void initialze();
+    void topSortUtil(int v, bool visited[], stack<int> &s);
 };
 
 Graph::Graph(int v)
 {
     this->V = v;
+    adj = new vector<int>[V];
 }
 
 void Graph::addEdge(int src, int dst)
 {
     adj[src].push_back(dst);
 }
-void Graph::initialze()
+void Graph::topSortUtil(int v, bool visited[], stack<int> &s)
 {
-    for(auto itr =adj.begin(); itr!=adj.end(); ++itr)
-    {
-        visited[itr->first] = false;
-    }
-}
-
-void Graph::topSortUtil(int val)
-{
-    visited[val] = true;
-    for(auto i=adj[val].begin(); i!=adj[val].end(); ++i)
+    visited[v] = true;
+    for(auto i=adj[v].begin(); i!=adj[v].end(); ++i)
     {
         if(!visited[*i])
-            topSortUtil(*i);
+            topSortUtil(*i, visited, s);
     }
-    ts.push(val);
+    s.push(v);
 }
+
 void Graph::topSort()
 {
-    for(auto itr =adj.begin(); itr!=adj.end(); ++itr)
+    bool visited[V];
+    stack<int> s;
+    for(int i=0; i<V; i++)
     {
-        cout << itr->first << endl;
-      //  if(visited[itr->first] == false)
-      //      topSortUtil(itr->first);
+        visited[i] = false;
     }
 
-    while(ts.empty() == false)
+    for(int i=0; i<V; i++)
     {
-        cout << ts.top() << " ";
-        ts.pop();
+        if(visited[i] == false)
+            topSortUtil(i, visited, s);
     }
 
+    while(s.empty() == false)
+    {
+        cout << s.top() << " ";
+        s.pop();
+    }
 }
 
 int main()
@@ -67,8 +63,8 @@ int main()
     g.addEdge(4, 1);
     g.addEdge(2, 3);
     g.addEdge(3, 1);
-    g.initialze();
     g.topSort();
 
     return 0;
+
 }
